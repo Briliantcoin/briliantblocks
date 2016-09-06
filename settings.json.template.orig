@@ -5,15 +5,15 @@
 */
 {
   // name your instance!
-  "title": "LADA",
+  "title": "IQUIDUS",
   
   "address": "127.0.0.1:3001",
   
   // coin name
-  "coin": "Ladacoin",
+  "coin": "Darkcoin",
 
   // coin symbol
-  "symbol": "LDC",
+  "symbol": "DRK",
   
   // logo
   "logo": "/images/logo.png",
@@ -26,7 +26,7 @@
   //     Cerulean, Cosmo, Cyborg, Darkly, Flatly, Journal, Lumen, Paper, 
   //     Readable, Sandstone, Simplex, Slate, Spacelab, Superhero, United, Yeti
   // theme (see /public/themes for available themes)
-  "theme": "Flatly",
+  "theme": "Cyborg",
 
   // port to listen for requests on.
   "port" : 3001,
@@ -34,7 +34,7 @@
   // database settings (MongoDB)
   "dbsettings": {
     "user": "iquidus",
-    "password": "Mine3xp!0reR",
+    "password": "3xp!0reR",
     "database": "explorerdb",
     "address": "localhost",
     "port": 27017
@@ -47,13 +47,13 @@
   // wallet settings
   "wallet": {
     "host": "localhost",
-    "port": 8832,
-    "user": "ladacoinrpc",
-    "pass": "ZVSies59cLb4xrXWJLB"
+    "port": 9332,
+    "user": "darkcoinrpc",
+    "pass": "123gfjk3R3pCCVjHtbRde2s5kzdf233sa"
   },
   
   // confirmations
-  "confirmations": 100,
+  "confirmations": 40,
 
   // language settings
   "locale": "locale/en.json",
@@ -61,9 +61,9 @@
   // menu settings
   "display": {
     "api": true,
-    "markets": false,
+    "markets": true,
     "richlist": true,
-    "twitter": false,
+    "twitter": true,
     "search": true
   },
 
@@ -76,17 +76,17 @@
   
   // ensure links on API page are valid
   "api": {
-    "blockindex": 1,
-    "blockhash": "6c33265c5c85807c289982a19591d1093cb7c135b8035acf155019c778edc039",
-    "txhash": "11e9c174e91030491101605a37ab911e59b2b05c5f5e4c133afeca12ef4c2a41",
-    "address": "1LxME4EQaqsBDkUkpVQr5sZxP1R28shKPs"
+    "blockindex": 1337,
+    "blockhash": "1733320247b15ca2262be646397d1ffd6be953fa638ebb8f5dcbb4c2b91b34f1",
+    "txhash": "f270cd3813254c9922a2e222a56ba745842d9112223a1394062e460b33d27b7e",
+    "address": "RBiXWscC63Jdn1GfDtRj8hgv4Q6Zppvpwb"
   },
   
   // market settings
   //supported markets: bittrex, poloniex, yobit, empoex, cryptsy, bleutrade
   //default market is loaded by default and determines last price in header
   "markets": {
-    "coin": "LDC",
+    "coin": "JBS",
     "exchange": "BTC",
     "enabled": ["bittrex", "cryptsy"],
     "cryptsy_id": "290",
@@ -104,8 +104,8 @@
   "twitter": "iquidus",
 
   //genesis
-  "genesis_tx": "7a756f67df28090833de8df9c15f36f9637306809443b3065dec5db903210566",
-  "genesis_block": "d77cb63a40042d73a83142383c7872c123cda7253db1d9c0effc8a029ca857b2",  
+  "genesis_tx": "65f705d2f385dc85763a317b3ec000063003d6b039546af5d8195a5ec27ae410",
+  "genesis_block": "b2926a56ca64e0cd2430347e383f63ad7092f406088b9b86d6d68c2a34baef51",  
 
   //heavy (enable/disable additional heavy features)
   "heavy": false,
