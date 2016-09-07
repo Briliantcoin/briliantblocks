@@ -47,7 +47,7 @@
   // wallet settings
   "wallet": {
     "host": "localhost",
-    "port": 9332,
+    "port": 8832,
     "user": "ladacoinrpc",
     "pass": "ZVSies59cLb4xrXWJLB"
   },
