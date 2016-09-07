@@ -17,13 +17,8 @@ var app = express();
 // bitcoinapi
 bitcoinapi.setWalletDetails(settings.wallet);
 if (settings.heavy != true) {
-<<<<<<< HEAD
-  bitcoinapi.setAccess('only', ['getinfo', 'getnetworkhashps', 'getmininginfo','getdifficulty', 'getconnectioncount', 
-    'getblockcount', 'getblockhash', 'getblock', 'getrawtransaction', 'gettxoutsetinfo']);
-=======
   bitcoinapi.setAccess('only', ['getinfo', 'getnetworkhashps', 'getmininginfo','getdifficulty', 'getconnectioncount',
     'getblockcount', 'getblockhash', 'getblock', 'getrawtransaction', 'getpeerinfo', 'gettxoutsetinfo']);
->>>>>>> refs/remotes/iquidus/master
 } else {
   // enable additional heavy api calls
   /*
