@@ -5,25 +5,35 @@
 */
 {
   // name your instance!
+<<<<<<< HEAD
   "title": "LADA",
   
+=======
+  "title": "IQUIDUS",
+
+>>>>>>> refs/remotes/iquidus/master
   "address": "127.0.0.1:3001",
-  
+
   // coin name
   "coin": "Ladacoin",
 
   // coin symbol
+<<<<<<< HEAD
   "symbol": "LDC",
   
+=======
+  "symbol": "DRK",
+
+>>>>>>> refs/remotes/iquidus/master
   // logo
   "logo": "/images/logo.png",
 
   // favicon
   "favicon": "public/favicon.ico",
-  
+
   // Uses bootswatch themes (http://bootswatch.com/)
-  // Valid options: 
-  //     Cerulean, Cosmo, Cyborg, Darkly, Flatly, Journal, Lumen, Paper, 
+  // Valid options:
+  //     Cerulean, Cosmo, Cyborg, Darkly, Flatly, Journal, Lumen, Paper,
   //     Readable, Sandstone, Simplex, Slate, Spacelab, Superhero, United, Yeti
   // theme (see /public/themes for available themes)
   "theme": "Flatly",
@@ -39,7 +49,7 @@
     "address": "localhost",
     "port": 27017
   },
-  
+
   //update script settings
   "update_timeout": 10,
   "check_timeout": 250,
@@ -51,7 +61,7 @@
     "user": "ladacoinrpc",
     "pass": "ZVSies59cLb4xrXWJLB"
   },
-  
+
   // confirmations
   "confirmations": 100,
 
@@ -63,17 +73,26 @@
     "api": true,
     "markets": false,
     "richlist": true,
+<<<<<<< HEAD
     "twitter": false,
     "search": true
+=======
+    "twitter": true,
+    "facebook": false,
+    "googleplus": false,
+    "search": true,
+    "movement": true,
+    "network": true
+>>>>>>> refs/remotes/iquidus/master
   },
 
-  // index page (valid options for difficulty are POW or POS)
+  // index page (valid options for difficulty are POW, POS or Hybrid)
   "index": {
     "show_hashrate": true,
     "difficulty": "POW",
     "last_txs": 100
   },
-  
+
   // ensure links on API page are valid
   "api": {
     "blockindex": 1,
@@ -81,15 +100,16 @@
     "txhash": "11e9c174e91030491101605a37ab911e59b2b05c5f5e4c133afeca12ef4c2a41",
     "address": "1LxME4EQaqsBDkUkpVQr5sZxP1R28shKPs"
   },
-  
+
   // market settings
-  //supported markets: bittrex, poloniex, yobit, empoex, cryptsy, bleutrade
+  //supported markets: bittrex, poloniex, yobit, empoex, bleutrade, cryptopia, ccex
   //default market is loaded by default and determines last price in header
   "markets": {
     "coin": "LDC",
     "exchange": "BTC",
-    "enabled": ["bittrex", "cryptsy"],
-    "cryptsy_id": "290",
+    "enabled": ["bittrex"],
+    "cryptopia_id": "1658",
+    "ccex_key" : "Get-Your-Own-Key",
     "default": "bittrex"
   },
 
@@ -99,13 +119,29 @@
     "received": true,
     "balance": true
   },
+  // movement page settings
+  // min amount: show transactions greater than this value
+  // low flag: greater than this value flagged yellow
+  // high flag: greater than this value flagged red
+  "movement": {
+    "min_amount": 100,
+    "low_flag": 1000,
+    "high_flag": 5000
+  },
 
-  // twitter
+  // twitter, facebook, googleplus
   "twitter": "iquidus",
+  "facebook": "yourfacebookpage",
+  "googleplus": "yourgooglepluspage",
 
   //genesis
+<<<<<<< HEAD
   "genesis_tx": "7a756f67df28090833de8df9c15f36f9637306809443b3065dec5db903210566",
   "genesis_block": "d77cb63a40042d73a83142383c7872c123cda7253db1d9c0effc8a029ca857b2",  
+=======
+  "genesis_tx": "65f705d2f385dc85763a317b3ec000063003d6b039546af5d8195a5ec27ae410",
+  "genesis_block": "b2926a56ca64e0cd2430347e383f63ad7092f406088b9b86d6d68c2a34baef51",
+>>>>>>> refs/remotes/iquidus/master
 
   //heavy (enable/disable additional heavy features)
   "heavy": false,
@@ -115,29 +151,33 @@
 
   //show total sent & received on address page (set false if PoS)
   "show_sent_received": true,
-  
+
   // how to calculate current coin supply
   // COINBASE : total sent from coinbase (PoW)
   // GETINFO : retreive from getinfo api call (PoS)
   // HEAVY: retreive from heavys getsupply api call
   // BALANCES : total of all address balances
   // TXOUTSET : retreive from gettxoutsetinfo api call
+<<<<<<< HEAD
   "supply": "BALANCES",
+=======
+  "supply": "COINBASE",
+>>>>>>> refs/remotes/iquidus/master
 
   // how to acquire network hashrate
   // getnetworkhashps: uses getnetworkhashps api call, returns in GH/s
   // netmhashps: uses getmininginfo.netmhashpsm returns in MH/s
   "nethash": "getnetworkhashps",
-  
+
   // nethash unitd: sets nethash API return units
   // valid options: "P" (PH/s), "T" (TH/s), "G" (GH/s), "M" (MH/s), "K" (KH/s)
   "nethash_units": "G",
 
   // Address labels
-  // example : "JhbrvAmM7kNpwA6wD5KoAsbtikLWWMNPcM": {"label": "This is a burn address", "type":"danger", "url":"http://example.com"} 
+  // example : "JhbrvAmM7kNpwA6wD5KoAsbtikLWWMNPcM": {"label": "This is a burn address", "type":"danger", "url":"http://example.com"}
   // label (required) = test to display
   // type (optional) = class of label, valid types: default, primary, warning, danger, success
-  // url (optional) = url to link to for more information 
+  // url (optional) = url to link to for more information
   "labels": {
   //  "JSoEdU717hvz8KQVq2HfcqV9A79Wihzusu": {"label": "Developers address", "type":"primary", "url":"http://example.com"},
   //  "JSWVXHWeYNknPdG9uDrcBoZHztKMFCsndw": {"label": "Cryptsy"}

@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title= title
+    title= settings.title
     link(rel='stylesheet', href='/themes/#{settings.theme}/bootstrap.min.css')
     link(rel='stylesheet', href='/vendor/jqplot/jquery.jqplot.css')
     link(rel='stylesheet', href='//cdn.datatables.net/plug-ins/725b2a2115b/integration/bootstrap/3/dataTables.bootstrap.css')
@@ -23,14 +23,17 @@ html
     script(src='/javascripts/chart.js')
     script.
       $(document).ready(function(){
+        $('##{active}').addClass('active');
         function update_stats(){   
           $.ajax({url: '/ext/summary', success: function(json){
             $("#supply").text(json.data[0].supply);
             $("#difficulty").text(json.data[0].difficulty);
+            $("#difficultyHybrid").text(json.data[0].difficultyHybrid);
             $("#hashrate").text(json.data[0].hashrate);
             $("#lastPrice").text(json.data[0].lastPrice.toFixed(8));
             $("#lblConnections").text(json.data[0].connections + ' connections');
             $("#lblBlockcount").text(json.data[0].blockcount + ' blocks');
+            $("#lblX1").text(' ');
           }});
         }
         $('.block-last-next').tooltip({
@@ -88,60 +91,40 @@ html
           a.navbar-brand(href='/') #{settings.title}
         .collapse.navbar-collapse(id='navbar-collapse')
           ul.nav.navbar-nav
-            if active == 'home'
-              li.active
-                a.navbar-link(href='/') 
-                  span.glyphicon.glyphicon-search
-                  span.menu-text #{settings.locale.menu_explorer}
-            else
-              li
-                a.navbar-link(href='/') 
-                  span.glyphicon.glyphicon-search
-                  span.menu-text #{settings.locale.menu_explorer}
+            li#home
+              a.navbar-link(href='/') 
+                span.glyphicon.glyphicon-search
+                span.menu-text #{settings.locale.menu_explorer}
             if settings.heavy == true
-              if active == 'reward'
-                li.active
-                  a.navbar-link(href='/reward')
-                    span.fa.fa-star
-                    span.menu-text #{settings.locale.menu_reward}
-              else
-                li
-                  a.navbar-link(href='/reward')
-                    span.fa.fa-star
-                    span.menu-text #{settings.locale.menu_reward}
-            if settings.display.markets == true
-              if active == 'markets'
-                li.active
-                  a.navbar-link.loading(href='/markets/#{settings.markets.default}') 
-                    span.fa.fa-line-chart
-                    span.menu-text #{settings.locale.menu_markets}
-              else
-                li
-                  a.navbar-link.loading(href='/markets/#{settings.markets.default}') 
-                    span.fa.fa-line-chart
-                    span.menu-text #{settings.locale.menu_markets}
+              li#reward
+                a.navbar-link(href='/reward')
+                  span.fa.fa-star
+                  span.menu-text #{settings.locale.menu_reward}
+            if settings.display.movement == true
+              li#movement 
+                a.navbar-link.loading(href='/movement') 
+                  span.fa.fa-money
+                  span.menu-text #{settings.locale.menu_movement}
+            if settings.display.network == true
+              li#network
+                a.navbar-link(href='/network')
+                  span.fa.fa-share-alt
+                  span.menu-text #{settings.locale.menu_network}
             if settings.display.richlist == true
-              if active == 'richlist'
-                li.active
-                  a.navbar-link(href='/richlist')
-                    span.fa.fa-btc
-                    span.menu-text #{settings.locale.menu_richlist}
-              else
-                li
-                  a.navbar-link(href='/richlist')
-                    span.fa.fa-btc
-                    span.menu-text #{settings.locale.menu_richlist}
+              li#richlist
+                a.navbar-link(href='/richlist')
+                  span.fa.fa-btc
+                  span.menu-text #{settings.locale.menu_richlist}
+            if settings.display.markets == true
+              li#markets
+                a.navbar-link.loading(href='/markets/#{settings.markets.default}') 
+                  span.fa.fa-line-chart
+                  span.menu-text #{settings.locale.menu_markets}
             if settings.display.api == true
-              if active == 'info'
-                li.active
-                  a.navbar-link(href='/info')
-                    span.glyphicon.glyphicon-info-sign
-                    span.menu-text #{settings.locale.menu_api}
-              else
-                li.hidden-xs
-                  a.navbar-link(href='/info')
-                    span.glyphicon.glyphicon-info-sign
-                    span.menu-text #{settings.locale.menu_api}
+              li#info
+                a.navbar-link(href='/info')
+                  span.glyphicon.glyphicon-info-sign
+                  span.menu-text #{settings.locale.menu_api}
     .col-md-12
       .row.text-center
         .col-md-2.col-md-offset-1
@@ -160,13 +143,23 @@ html
               else if settings.nethash_units == 'H'
                 strong #{settings.locale.network} (H/s)
             .panel-body
-              label#hashrate -
+              if settings.index.difficulty == 'Hybrid'
+               label#hashrate - 
+               <br>
+               label#lblX1  
+              else  
+               label#hashrate - 
         .col-md-2
           .panel.panel-default.hidden-sm.hidden-xs
             .panel-heading
               strong #{settings.locale.difficulty}
             .panel-body
-              label#difficulty -
+              if settings.index.difficulty == 'Hybrid'
+               label#difficulty -
+               <br>
+               label#difficultyHybrid -
+              else
+               label#difficulty -
         .col-md-2.col-sm-12
           img(src='#{settings.logo}', style='margin-top:-15px;height:128px;')
         .col-md-2
@@ -174,13 +167,24 @@ html
             .panel-heading
               strong #{settings.locale.ex_supply} (#{settings.symbol})
             .panel-body
-              label#supply -
+              if settings.index.difficulty == 'Hybrid'
+               label#supply - 
+               <br>
+               label#lblX1
+              else
+               label#supply -  
         .col-md-2
           .panel.panel-default.hidden-sm.hidden-xs
             .panel-heading
               strong #{settings.markets.exchange} Price
             .panel-body
-              label#lastPrice -
+              if settings.index.difficulty == 'Hybrid'
+               label#lastPrice -
+               <br>
+               label#lblX1
+              else
+               label#lastPrice - 
+                 
       .row.text-center(style='margin-top:10px;margin-bottom:20px;')
         form.form-inline(method='post', action='/search')      
           #index-search.form-group
@@ -192,8 +196,18 @@ html
         if settings.display.twitter
           ul.nav.navbar-nav
             li.pull-left
-              a#twitter-icon(href="https://twitter.com/#{settings.twitter}", target='_blank')  
+              a#twitter-icon(href="https://twitter.com/#{settings.twitter}", target='_blank')
                 span.glyphicon.fa.fa-twitter
+        if settings.display.facebook
+          ul.nav.navbar-nav
+            li.pull-left
+              a#facebook-icon(href="https://www.facebook.com/#{settings.facebook}", target='_blank')
+                span.glyphicon.fa.fa-facebook
+        if settings.display.googleplus
+          ul.nav.navbar-nav
+            li.pull-left
+              a#googleplus-icon(href="https://plus.google.com/#{settings.googleplus}", target='_blank')
+                span.glyphicon.fa.fa-google-plus
       .col-md-4
         ul.nav
           li.text-center(style='margin-left:80px;margin-right:80px;')
